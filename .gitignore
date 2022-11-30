@@ -1,0 +1,5 @@
+/venv/
+.idea
+bonus
+test.py
+tmp.txt
