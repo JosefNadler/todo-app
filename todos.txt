@@ -9,3 +9,5 @@ Go to work
 phone the teacher
 Schnuggi wants a nuggi ..
 No fun no gun
+Master Python
+go playing golang
