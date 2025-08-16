@@ -1,6 +1,7 @@
 import functions
-import PySimpleGUI as sg
 import time, os
+import FreeSimpleGUI as sg
+
 
 if not os.path.exists('todos.txt'):
     with open('todos.txt', 'w'):
