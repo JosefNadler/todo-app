@@ -7,18 +7,16 @@ add_button = sg.Button('Add')
 list_box = sg.Listbox(values=functions.get_todos(), key='todo_list', enable_events=True, size = (45, 10))
 
 edit_button = sg.Button('Edit')
-
+delete_button = sg.Button('Delete')
+exit_button = sg.Button('Exit', key='Exit')
 
 window = sg.Window('My todo App', 
-                    layout=[[label], [input_box, add_button], [list_box, edit_button]], 
+                    layout=[[label], [input_box, add_button], [list_box, edit_button, delete_button], [exit_button]], 
                     font=('Helvetica', 12))
 
 while True:
     event, values = window.read()
     
-    if event == sg.WINDOW_CLOSED:
-        break
-
     print("Hello from the GUI ", event, values)
     match event:
         case 'Add':
@@ -35,13 +33,26 @@ while True:
             functions.save_todos(todos)
             window['todo_list'].update(values=todos)
             print(selected_todo)
+        case 'Delete':
+            selected_todo = values['todo_list'][0] if values['todo_list'] else None
+            todos = functions.get_todos()
+            if selected_todo in todos:
+                todos.remove(selected_todo)
+                functions.save_todos(todos)
+                window['todo_list'].update(values=todos)
+                window['todo'].update(value='')
         case 'todo_list':
             selected_todo = values['todo_list'][0] if values['todo_list'] else None
             if selected_todo:
                 window['todo'].update(value=selected_todo)  
+        case 'Exit':
+            break
+        case sg.WIN_CLOSED:
+            break
         case _:
-            print("Unknown event")
+            print("Unknown event")        
 
-window.close()
+print("Bye")
+window.close()  
 
 
