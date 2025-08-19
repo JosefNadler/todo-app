@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+
 import functions
 import time, os
 import FreeSimpleGUI as sg
 
 
 if not os.path.exists('todos.txt'):
-    with open('todos.txt', 'w'):
+    with open('todos.txt', 'w') as file:
         pass
 
 sg.theme('Black')
